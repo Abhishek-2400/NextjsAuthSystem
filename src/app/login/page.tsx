@@ -5,19 +5,24 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
 const page = () => {
-
+    const router = useRouter()
     const [payload, setpayload] = useState({
         "email": "",
         "password": ""
     })
 
-    const OnChangeHandler = (e) => {
-        console.log(payload)
+    const OnChangeHandler = (e: any) => {
         setpayload({ ...payload, [e.target.name]: e.target.value })
     }
-    const handlesubmit = (e) => {
-        e.preventDefault();
-        console.log(payload);
+    const handlesubmit = async (e: any) => {
+        try {
+            e.preventDefault();
+            const response = await axios.post('/api/users/login', payload)
+            console.log("successful login", response.data)
+            router.push("/profile")
+        } catch (error: any) {
+            console.log("login failed", error.message)
+        }
     }
 
     return (

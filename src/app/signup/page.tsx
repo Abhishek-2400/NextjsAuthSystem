@@ -4,20 +4,28 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 const signup = () => {
-
+    const router = useRouter()
     const [payload, setpayload] = useState({
         "email": "",
         "username": "",
         "password": ""
     })
 
-    const OnChangeHandler = (e) => {
-        console.log(payload)
+    const OnChangeHandler = (e: any) => {
         setpayload({ ...payload, [e.target.name]: e.target.value })
     }
-    const handlesubmit = (e) => {
-        e.preventDefault();
-        console.log(payload);
+    const handlesubmit = async (e: any) => {
+        try {
+            e.preventDefault();
+            const response = await axios.post("/api/users/signup", payload);
+            console.log("signup success", response.data)
+            router.push("/login")
+        }
+        catch (error: any) {
+            console.log("signup failed", error.message)
+        }
+
+
     }
     return (
 
