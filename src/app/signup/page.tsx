@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 const signup = () => {
     const router = useRouter()
     const [payload, setpayload] = useState({
@@ -19,6 +20,7 @@ const signup = () => {
             e.preventDefault();
             const response = await axios.post("/api/users/signup", payload);
             console.log("signup success", response.data)
+            toast.success('signup successfully')
             router.push("/login")
         }
         catch (error: any) {

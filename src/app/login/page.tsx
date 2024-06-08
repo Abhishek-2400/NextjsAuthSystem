@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-
+import toast from 'react-hot-toast'
 const page = () => {
     const router = useRouter()
     const [payload, setpayload] = useState({
@@ -19,6 +19,7 @@ const page = () => {
             e.preventDefault();
             const response = await axios.post('/api/users/login', payload)
             console.log("successful login", response.data)
+            toast.success('Signed in successfully')
             router.push("/profile")
         } catch (error: any) {
             console.log("login failed", error.message)
