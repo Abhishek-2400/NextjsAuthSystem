@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 // Middleware function to handle authentication redirects
 export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
-    const publicPaths = ['/login', '/signup'];
+    const publicPaths = ['/login', '/signup', '/verifyemail'];
     const isPublicPath = publicPaths.includes(path);
     const token = request.cookies.get('token');
 
@@ -29,6 +29,7 @@ export const config = {
         '/profile',
         '/login',
         '/signup',
-        '/profile/:path*'
+        '/profile/:path*',
+        '/verifyemail'
     ]
 }

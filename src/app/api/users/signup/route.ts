@@ -2,6 +2,7 @@ import { connect } from "@/dbConfig/dbConfig"
 import User from "@/models/userModel"
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/helpers/mailer";
 
 
 
@@ -29,7 +30,9 @@ export async function POST(request: NextRequest) {
         }
 
         const registerUser = await User.create(newUser)
-        return NextResponse.json({ message: "UserSuccessfully Registered", registerUser })
+        const res = await sendEmail({ email, emailType: "VERIFY", userId: registerUser._id });
+
+        return NextResponse.json({ message: "UserSuccessfully Registered", registerUser, res })
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 })
