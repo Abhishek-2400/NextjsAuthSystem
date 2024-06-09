@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import Link from 'next/link'
 
 
-const page = () => {
+const Profilepage = () => {
     const router = useRouter()
     const handlelogout = async () => {
         try {
@@ -47,4 +47,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Profilepage

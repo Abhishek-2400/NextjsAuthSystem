@@ -4,7 +4,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-const page = () => {
+const Loginpage = () => {
     const router = useRouter()
     const [payload, setpayload] = useState({
         "email": "",
@@ -22,6 +22,7 @@ const page = () => {
             toast.success('Signed in successfully')
             router.push("/profile")
         } catch (error: any) {
+            toast.error('Login failed');
             console.log("login failed", error.message)
         }
     }
@@ -45,4 +46,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Loginpage

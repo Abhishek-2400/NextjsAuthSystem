@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const page = ({ params }: any) => {
+const PrivateProfilepage = ({ params }: any) => {
 
     return (
         <div>
@@ -11,4 +11,4 @@ const page = ({ params }: any) => {
     )
 }
 
-export default page
+export default PrivateProfilepage

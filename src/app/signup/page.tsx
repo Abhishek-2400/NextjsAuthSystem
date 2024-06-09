@@ -4,7 +4,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-const signup = () => {
+const Signup = () => {
     const router = useRouter()
     const [payload, setpayload] = useState({
         "email": "",
@@ -54,4 +54,4 @@ const signup = () => {
     )
 }
 
-export default signup
+export default Signup

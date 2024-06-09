@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
-const page = () => {
+const VerifyEmailpage = () => {
     const [token, setToken] = useState("");
     const [verify, setVerify] = useState(false);
     const verifyToken = async () => {
@@ -49,4 +49,4 @@ const page = () => {
     )
 }
 
-export default page
+export default VerifyEmailpage
