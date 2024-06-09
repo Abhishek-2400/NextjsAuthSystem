@@ -21,7 +21,7 @@ const VerifyEmailpage = () => {
         const params = new URLSearchParams(window.location.search);
         let tokens = params.get('token');
         console.log(tokens)
-        if (!tokens) tokens = "";// Assuming the parameter is named 'id'
+        if (!tokens) tokens = "";
         setToken(tokens);
         console.log(token)
     }, [])
@@ -41,7 +41,7 @@ const VerifyEmailpage = () => {
                     </>
                     :
                     <>
-                        <p>User not verfied </p>
+                        <p>Verify your mail id ! Check your inbox</p>
                     </>
 
             }

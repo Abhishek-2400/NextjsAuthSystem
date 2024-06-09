@@ -24,11 +24,21 @@ export async function sendEmail({ email, emailType, userId }: any) {
             }
         });
 
+        const encodedToken = encodeURIComponent(hashed_token);
+        const urlPath = emailType === "VERIFY" ? "verifyemail" : "resetpassword";
+        const subject = emailType === "VERIFY" ? "Please verify your email" : "Reset your password";
+        const url = `${process.env.DOMAIN}/${urlPath}?token=${encodedToken}`;
+        const htmlContent = `
+            <p>Click <a href="${url}">Here</a> to ${subject.toLowerCase()} or paste the below URL into your browser:</p>
+            <p>${url}</p>
+        `;
+
+
         const mailOptions = {
             from: 'abhi2003shukla@gmail.com',
             to: email,
-            subject: emailType === "VERIFY" ? "Plaese verify your email" : "Reset your password",
-            html: `<p>Click <a href='${process.env.DOMAIN}/verifyemail?token=${hashed_token}'>Here</a> to ${emailType === "VERIFY" ? "Plaese verify your email" : "Reset your password"} or paste below url ${process.env.DOMAIN}/verifyemail?token=${hashed_token}`
+            subject: subject,
+            html: htmlContent
         }
         const mailResponse = await transport.sendMail(mailOptions);
         return mailResponse;

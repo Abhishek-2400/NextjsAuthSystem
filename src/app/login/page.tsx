@@ -19,8 +19,13 @@ const Loginpage = () => {
             e.preventDefault();
             const response = await axios.post('/api/users/login', payload)
             console.log("successful login", response.data)
-            toast.success('Signed in successfully')
-            router.push("/profile")
+            if (!response?.data?.data?.isVerified) {
+                alert('Kindly Verify your mail first then login')
+            }
+            else {
+                toast.success('Signed in successfully')
+                router.push("/profile")
+            }
         } catch (error: any) {
             toast.error('Login failed');
             console.log("login failed", error.message)
