@@ -37,7 +37,7 @@ const Profilepage = () => {
                 Profile
             </div>
 
-            {userData === "Nothing" ? <button>Nothing!</button> : <Link href={`/profile/${userData}`}><button>{userData}</button></Link>}
+            {userData === "Nothing" ? <p>Nothing!</p> : <Link href={`/profile/${userData}`}><p>{userData}</p></Link>}
             <br></br>
             <button onClick={() => { getMyDetails() }}>Extract my details</button>
             <br></br>

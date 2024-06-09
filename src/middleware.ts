@@ -7,14 +7,15 @@ export function middleware(request: NextRequest) {
     const publicPaths = ['/login', '/signup', '/verifyemail'];
     const isPublicPath = publicPaths.includes(path);
     const token = request.cookies.get('token');
-
+    //console.log(token?.value)
     // Redirect authenticated users away from public paths
-    if (isPublicPath && token) {
+    if (isPublicPath && token?.value) {
         return NextResponse.redirect(new URL('/', request.url));
     }
 
     // Redirect unauthenticated users to login page from protected paths
-    if (!isPublicPath && !token) {
+    if (!isPublicPath && !token?.value) {
+
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
