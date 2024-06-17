@@ -19,7 +19,7 @@ const Loginpage = () => {
             e.preventDefault();
             const response = await axios.post('/api/users/login', payload)
             console.log("successful login", response.data)
-            if (!response?.data?.data?.isVerified) {
+            if (!response?.data?.data?.isVerfied) {
                 alert('Kindly Verify your mail first then login')
             }
             else {
